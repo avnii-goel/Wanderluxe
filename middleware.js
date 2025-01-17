@@ -34,9 +34,6 @@ module.exports.isOwner = async (req, res, next)=> {
 
 // Validation for Listing Schema (Middleware)
 module.exports.validateListing = (req, res, next) => {
-    if (!req.body || !req.body.listing) {
-        throw new ExpressError(400, "Invalid form submission. Please fill out all required fields.");
-    }
     let {error} = listingSchema.validate(req.body);
     console.log(error);
     if (error) {

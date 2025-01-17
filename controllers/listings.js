@@ -4,8 +4,6 @@ const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
 const mapToken = process.env.MAP_TOKEN;
 const geocodingClient = mbxGeocoding({ accessToken: mapToken });
 
-
-
 module.exports.index = async (req,res) => {
     const allListings = await Listing.find({});
     res.render("listingsTemplates/index.ejs", {allListings});
@@ -38,20 +36,9 @@ module.exports.createListing = async (req,res, next) => {
         limit: 1
         })
         .send();
-    if (!response.body.features || response.body.features.length === 0) {
-            req.flash("error", "Invalid location provided.");
-            return res.redirect("/listings/new");
-    }
-        
-    let url, filename;
-    if (req.file) {
-        url = req.file.path;        //image's url
-        filename = req.file.filename;       //image's filename
-    } else {
-        req.flash("error", "Image upload failed or no image provided.");
-        return res.redirect("/listings/new");
-    }
-    
+
+    let url = req.file.path;        //image's url
+    let filename = req.file.filename;       //image's filename
     // let {title, description, image, price, location, country} = req.body;    //to shorten this syntax we can use below command (as used key[value] in new.ejs)
     // console.log(req.body);
     let listing = req.body.listing;         //where listing is keyname
@@ -62,6 +49,7 @@ module.exports.createListing = async (req,res, next) => {
     newListing.geometry = response.body.features[0].geometry;
     newListing.category = listing.category;
     let savedListing = await newListing.save();
+    console.log(savedListing);
     req.flash("success", "New Listing Created!");
     res.redirect("/listings");
 };
