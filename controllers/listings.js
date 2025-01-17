@@ -38,9 +38,20 @@ module.exports.createListing = async (req,res, next) => {
         limit: 1
         })
         .send();
-
-    let url = req.file.path;        //image's url
-    let filename = req.file.filename;       //image's filename
+    if (!response.body.features || response.body.features.length === 0) {
+            req.flash("error", "Invalid location provided.");
+            return res.redirect("/listings/new");
+    }
+        
+    let url, filename;
+    if (req.file) {
+        url = req.file.path;        //image's url
+        filename = req.file.filename;       //image's filename
+    } else {
+        req.flash("error", "Image upload failed or no image provided.");
+        return res.redirect("/listings/new");
+    }
+    
     // let {title, description, image, price, location, country} = req.body;    //to shorten this syntax we can use below command (as used key[value] in new.ejs)
     // console.log(req.body);
     let listing = req.body.listing;         //where listing is keyname
