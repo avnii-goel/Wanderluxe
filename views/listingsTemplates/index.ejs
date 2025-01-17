@@ -1,0 +1,180 @@
+<% layout("/layouts/boilerplate") %>
+
+<style>
+    #filters{
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        overflow-x: auto; /* Enable horizontal scrolling */
+    }
+    #filters a {
+        text-decoration: none;
+        color: black;
+        flex: 0 0 auto; /* Prevent shrinking */
+    }
+    .filter{
+        text-align: center;
+        margin-right: 1.8rem;
+        margin-top: 2rem;
+        opacity: 0.7; 
+    }
+    .filter:hover{
+        opacity: 1;
+        cursor: pointer;
+    }
+    .filter p{
+        font-size: 0.8rem;
+    }
+    .taxInfo{
+        display: none;
+    }
+    .taxToggle{
+        border: 1px solid black;
+        border-radius: 1rem;
+        height: 3.25rem;
+        padding: 1rem;
+        margin-left: 1rem;
+        margin-top: 1rem;
+        display: flex;
+        align-items: center;
+        flex-shrink: 0; /* Prevent shrinking */
+    }
+    /* Media Query for Desktop */
+    @media (min-width: 768px) {
+        #filters {
+        flex-wrap: wrap;
+        justify-content: center;
+        overflow-x: unset; /* Disable horizontal scrolling */
+        }
+    }
+</style>
+
+<body>
+    <!-- <h3>All Listings</h3> -->
+    <!-- <form method="GET" action="/listings/new">    //we dont require this button kyunki ab 'Add New Listing' se kaam ho jaega in Navbar
+        <button>Create New Listing</button>
+    </form> -->
+
+    <!-- Filter Section -->
+    <div id="filters" >
+        <a href="/listings/category/?category=Trending" class="listing-link"> 
+            <div class="filter">
+                <div><i class="fa-solid fa-fire"></i></div>
+                <p>Trending</p>
+            </div>
+        </a>
+        <a href="/listings/category/?category=Rooms" class="listing-link"> 
+            <div class="filter">
+                <div><i class="fa-solid fa-bed"></i></div>
+                <p>Rooms</p>
+            </div>
+        </a>
+        <a href="/listings/category/?category=Iconic cities" class="listing-link"> 
+            <div class="filter">
+                <div><i class="fa-solid fa-mountain-city"></i></div>
+                <p>Iconic cities</p>
+            </div>
+        </a>
+        <a href="/listings/category/?category=Mountains" class="listing-link"> 
+            <div class="filter">
+                <div><i class="fa-solid fa-mountain-sun"></i></div>
+                <p>Mountains</p>
+            </div>
+        </a>
+        <a href="/listings/category/?category=Beachside" class="listing-link"> 
+            <div class="filter">
+                <div><i class="fa-solid fa-umbrella-beach"></i></div>
+                <p>Beachside</p>
+            </div>
+        </a>
+        <a href="/listings/category/?category=Amazing Pools" class="listing-link"> 
+            <div class="filter">
+                <div><i class="fa-solid fa-person-swimming"></i></div>
+                <p>Amazing Pools</p>
+            </div>
+        </a>
+        <a href="/listings/category/?category=Camping" class="listing-link"> 
+            <div class="filter">
+                <div><i class="fa-solid fa-campground"></i></div>
+                <p>Camping</p>
+            </div>
+        </a>
+        <a href="/listings/category/?category=Farms" class="listing-link"> 
+            <div class="filter">
+                <div><i class="fa-solid fa-cow"></i></div>
+                <p>Farms</p>
+            </div>
+        </a>
+        <a href="/listings/category/?category=Arctic" class="listing-link"> 
+            <div class="filter">
+                <div><i class="fa-solid fa-snowflake"></i></div>
+                <p>Arctic</p>
+            </div>
+        </a>
+        <a href="/listings/category/?category=CityStays" class="listing-link"> 
+            <div class="filter">
+                <div><i class="fa-solid fa-city"></i></div>
+                <p>CityStays</p>
+            </div>
+        </a>
+        <a href="/listings/category/?category=HouseBoats" class="listing-link"> 
+            <div class="filter">
+                <div><i class="fa-solid fa-house-flood-water"></i></div>
+                <p>HouseBoats</p>
+            </div>
+        </a>
+        <a href="/listings/category/?category=Tents" class="listing-link"> 
+            <div class="filter">
+                <div><i class="fa-solid fa-tent"></i></div>
+                <p>Tents</p>
+            </div>
+        </a>
+
+        <!-- Used Code from https://getbootstrap.com/docs/5.3/forms/checks-radios/#switches -->
+        <div class="taxToggle">
+            <div class="form-check-reverse form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Display Total after Taxes</label>
+              </div>
+        </div>
+        
+    </div>
+
+    <!-- Used Code from(https://getbootstrap.com/docs/5.3/components/card/#images) to use cards-format -->
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+        <% for (let listing of allListings) { %>
+            <!-- 'a' tag so that we can get onto show route wherever-whenever we click inside card -->
+            <a href="/listings/<%= listing._id %>" class="listing-link"> 
+                <div class="card column listingCard">
+                    <img 
+                        src="<%= listing.image.url %>" 
+                        class="card-img-top" 
+                        alt="listing_image" 
+                        >
+                    <div class="card-img-overlay"></div>
+                    <div class="card-body">
+                      <p class="card-text">
+                        <b><%= listing.title %></b> <br>
+                        &#8377;<%= listing.price.toLocaleString("en-In") %> / night
+                        <i class="taxInfo"> &nbsp;+ 18% GST</i>
+                    </p>
+                    </div>
+                </div>
+            </a>
+         <% } %>
+    </div>
+</body>
+
+<script>
+    let taxSwitch = document.getElementById("flexSwitchCheckDefault");
+    taxSwitch.addEventListener("click", ()=> {
+        let taxInfo = document.getElementsByClassName("taxInfo");
+        for (info of taxInfo) {
+            if (info.style.display !== "inline") {
+                info.style.display = "inline";
+            } else {
+                info.style.display = "none";
+            }
+        }
+    });
+</script>
