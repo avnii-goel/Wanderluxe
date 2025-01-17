@@ -35,7 +35,7 @@ module.exports.isOwner = async (req, res, next)=> {
 // Validation for Listing Schema (Middleware)
 module.exports.validateListing = (req, res, next) => {
     let {error} = listingSchema.validate(req.body);
-    console.log(error);
+    // console.log(error);
     if (error) {
         let errMsg = error.details.map( (el) => el.message ).join(",");     //agar kabhi extra details aati hein to wo , se join hoke alert me display hoengi if agar koi postman ya hoppscotch se try krta hei to
         throw new ExpressError(400, errMsg);
