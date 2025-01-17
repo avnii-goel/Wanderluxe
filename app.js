@@ -16,7 +16,7 @@ const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");   //acquiring User Model
 
 const dbUrl = process.env.ATLASDB_URL;
-const port = process.env.PORT;
+const port = process.env.PORT || 8080;
 
 const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
@@ -65,8 +65,8 @@ async function main() {
   await mongoose.connect(dbUrl);
 }
 
-app.listen(PORT, ()=> {
-    console.log(`server is listening to port ${PORT}`);
+app.listen(port, ()=> {
+    console.log(`server is listening to port ${port}`);
 });
 
 app.use(session(sessionOptions));
