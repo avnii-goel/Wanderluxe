@@ -16,3 +16,7 @@ Whether you're looking for a private villa on a tropical island, or a luxury pen
     ```sh
     npm install
     ```
+3. Start the Development Server (to view locally), use:
+    ```sh
+        npm start
+    ```
