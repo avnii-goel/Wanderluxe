@@ -1,8 +1,8 @@
 # WanderLuxe
 WanderLuxe is a fully-responsive and premier website for exploring cozy-luxurious stays at travel experiences, inspired by the ease and elegance of Airbnb.
 Whether you're looking for a private villa on a tropical island, or a luxury penthouse in the heart of the city, WanderLuxe ensures a seamless and personalized journey.
-<br>
-View 
+<br><br>
+Check out the deployed website: <a src="https://wanderluxe-nxhh.onrender.com" alt="WanderLuxe">
 
 <img height= "" width="1000" alt="Desktop view" src="https://github.com/user-attachments/assets/1b25848c-78ea-488f-a60b-7b26f3292d44" />
 
@@ -16,11 +16,6 @@ View
     ```sh
     npm install
     ```
-3. Start the Development Server (to view locally), use:
-    ```sh
-        npm start
-    ```
-4. Navigate on `http://localhost:8080` 
 
 ## Configuration
 1. Environment Variables:
@@ -35,3 +30,10 @@ View
     SECRET=your_session_secret
     PORT=8080
     ```
+
+## Usage
+1. Start the Development Server (to view locally), use:
+    ```sh
+        npm start
+    ```
+2. Navigate on `http://localhost:8080` 
