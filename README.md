@@ -7,14 +7,12 @@ Whether you're looking for a private villa on a tropical island, or a luxury pen
 
 ## Installation
 
-1. **Clone the repository**:
-
+1. Clone the repository:
     ```sh
-    git clone https://github.com/yourusername/majorproject.git
-    cd majorproject
+    git clone https://github.com/avnii-goel/Wanderluxe.git
     ```
 
-2. **Install dependencies**:
+2. Install dependencies: Ensure you have Node.js and npm installed.
     ```sh
     npm install
     ```
