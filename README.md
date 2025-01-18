@@ -3,8 +3,16 @@ WanderLuxe is a fully-responsive and premier website for exploring cozy-luxuriou
 Whether you're looking for a private villa on a tropical island, or a luxury penthouse in the heart of the city, WanderLuxe ensures a seamless and personalized journey.
 <br><br>
 Check out the deployed website: [WanderLuxe](https://wanderluxe-nxhh.onrender.com/listings)
-
 <img height= "" width="1000" alt="Desktop view" src="https://github.com/user-attachments/assets/1b25848c-78ea-488f-a60b-7b26f3292d44" />
+
+
+## Technologies 
+I decently learnt and used the following technologies: 
+-   **Frontend**: HTML, CSS, JavaSript
+-   **Database**: MongoDB (Mongosh, Mongoose, Mongo Atlas)
+-   **Backend**: Node.js, Express.js, EJS
+-   **Dependencies**: Ejs-mate, method-override, Joi, connect-flash, connect-mongo, express-session, @mapbox/mapbox-sdk, passport, passport-local, passport-local-mongoose, cloudinary, multer, multer-storage-cloudinary, dotenv
+
 
 ## Installation
 1. Clone the repository:
